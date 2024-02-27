@@ -1,3 +1,27 @@
+<?php
+require_once('database.php');
+session_start();
+$_SESSION['status'] = ""; 
+if ($_SESSION['status']=="login") { 
+    header("location:index.php");
+}else{  
+    if (isset($_POST['masuk'])) {
+        $username = $_POST['username'];
+        if (checkLogin($_POST['username'], $_POST['password'])) {
+            $_SESSION['username'] = $username;
+            $_SESSION['status'] = "login";
+            if ($_SESSION['role']=="admin") { 
+                header("location:index.php");
+            }if ($_SESSION['role']=="member"){
+                header("location:index-member.php");
+            }
+        } else {
+            header("location:login.php?msg=gagal");
+        }
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -43,19 +67,13 @@
                                     <form class="user" method="POST">
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user"
-                                                placeholder="Username">
+                                                placeholder="Username" name="username">
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user"
-                                                id="exampleInputPassword" placeholder="Password">
+                                                id="exampleInputPassword" placeholder="Password" name="password">
                                         </div>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control form-control-user"
-                                                placeholder="Role">
-                                        </div>
-                                        <a href="index.php" class="btn btn-primary btn-user btn-block">
-                                            Login
-                                        </a>
+                                        <input type="submit" name="masuk" href="index.php" class="btn btn-primary btn-user btn-block">
                                     </form>
                                 </div>
                             </div>

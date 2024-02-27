@@ -1,3 +1,9 @@
+<?php
+    require_once('database.php');
+    $data=showdataBarang();
+    $nomor=0;
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,48 +34,16 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        
+        <?php
+            session_start();
+            if($_SESSION['status']!="login"){
+                header("location:login.php?msg=belum_login");
+            } else{
+                include("sidebar.php");
+            }
+        ?>
 
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
-                <div class="sidebar-brand-text mx-3">Peminjaman Barang <sup></sup></div>
-            </a>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
-
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
-                <a class="nav-link" href="index.php">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
-            </li>
-
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="user.php">
-                    <i class="fas fa-fw fa-user-alt"></i>
-                    <span>User</span></a>
-            </li>
-
-            <li class="nav-item active">
-                <a class="nav-link" href="#">
-                    <i class="fas fa-fw fa-box"></i>
-                    <span>Barang</span></a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="datapeminjaman.php">
-                    <i class="fas fa-fw fa-database"></i>
-                    <span>Data Peminjaman</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
-
-            <!-- Sidebar Toggler (Sidebar) -->
-
-        </ul>
         <!-- End of Sidebar -->
 
         <div id="content-wrapper" class="d-flex flex-column">
@@ -80,7 +54,7 @@
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
                     <div class=" container justify-content-end">
-                        <a href="login.php"><button type="button" class="btn btn-outline-primary">Log Out</button></a>
+                        <a href="logout.php"><button type="button" class="btn btn-outline-primary">Log Out</button></a>
                     </div>
                 </nav>
                 <!-- End of Topbar -->
@@ -112,19 +86,26 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <?php foreach($data as $barang) : ?> 
+                    <?php $nomor++; ?>
                     <tr>
-                        <td>1</td>
-                        <td>Tiger Nixon</td>
-                        <td>System Architect</td>
-                        <td>61</td>
-                        <td>2011/04/25</td>
-                        <td>$320,800</td>
+                        <th scope="row"><?php echo "$nomor"; ?></th>
+                        <td><?php echo "$barang[kode_barang]";?></td>
+                        <td><?php echo "$barang[nama_barang]";?></td>
+                        <td><?php echo "$barang[kategori]";?></td>
+                        <td><?php echo "$barang[merek]";?></td>
+                        <td><?php echo "$barang[jumlah]";?></td>
                         <td>
-                        <a href="#"><button type="button" class="btn btn-warning btn-sm">Edit</button></a>
-                        |
-                        <a href="#"><button type="button" class="btn btn-danger btn-sm">Hapus</button></a>
+                            <?php
+                                echo "
+                                <a href='#'><button type='button' class='btn btn-warning btn-sm'>Edit</button></a>
+                                |
+                                <a href='javascript:deleteData(".$barang['id'].")'><button type='button' class='btn btn-danger btn-sm'>Hapus</button></a>
+                                "
+                            ?>
                         </td>
                     </tr>
+                    <?php endforeach; ?>
                 </tbody>
             </table>
         </div>
@@ -163,6 +144,14 @@
             </div>
         </div>
     </div>
+
+    <script language="JavaScript" type="text/javascript">
+      function deleteData(id){
+        if (confirm("Apakah anda yakin akan menghapus data ini?")){
+          window.location.href = 'delete-barang.php?id=' + id;
+        }
+      }
+    </script>
 
     <!-- Bootstrap core JavaScript-->
     <script src="resource/vendor/jquery/jquery.min.js"></script>

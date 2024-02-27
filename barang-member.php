@@ -1,6 +1,6 @@
 <?php
     require_once('database.php');
-    $data=showdataUser();
+    $data=showdataBarang();
     $nomor=0;
 ?>
 
@@ -15,7 +15,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>User Page</title>
+    <title>Barang Page</title>
 
     <!-- Custom fonts for this template-->
     <link href="resource/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -40,7 +40,7 @@
             if($_SESSION['status']!="login"){
                 header("location:login.php?msg=belum_login");
             } else{
-                include("sidebar.php");
+                include("sidebar-member.php");
             }
         ?>
 
@@ -61,43 +61,39 @@
 
                 <div class="container-fluid">
 
-<h1 class="h3 mb-4 text-gray-800">Table User</h1>
+<!-- Page Heading -->
+<h1 class="h3 mb-4 text-gray-800">Table Barang</h1>
 
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
-    <div class="card-body">
-        <div class="row justify-content-end pr-3">
-        <a href="#"><button type="button" class="btn btn-success">Tambah Data</button></a>
-        </div>
-    </div>
     <div class="card-body">
         <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>No Identitas</th>
-                        <th>Nama</th>
-                        <th>Status</th>
-                        <th>Username</th>
-                        <th>Role</th>
+                        <th>Kode Barang</th>
+                        <th>Nama Barang</th>
+                        <th>Kategori</th>
+                        <th>Merk</th>
+                        <th>Jumlah</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach($data as $user) : ?> 
+                    <?php foreach($data as $barang) : ?> 
                     <?php $nomor++; ?>
                     <tr>
                         <th scope="row"><?php echo "$nomor"; ?></th>
-                        <td><?php echo "$user[no_identitas]";?></td>
-                        <td><?php echo "$user[nama]";?></td>
-                        <td><?php echo "$user[status]";?></td>
-                        <td><?php echo "$user[username]";?></td>
-                        <td><?php echo "$user[role]";?></td>
+                        <td><?php echo "$barang[kode_barang]";?></td>
+                        <td><?php echo "$barang[nama_barang]";?></td>
+                        <td><?php echo "$barang[kategori]";?></td>
+                        <td><?php echo "$barang[merek]";?></td>
+                        <td><?php echo "$barang[jumlah]";?></td>
                         <td>
-                        <a href="#"><button type="button" class="btn btn-warning btn-sm">Edit</button></a>
+                        <a href="#"><button type="button" class="btn btn-info btn-sm">Pinjam</button></a>
                         |
-                        <a href="#"><button type="button" class="btn btn-danger btn-sm">Hapus</button></a>
+                        <a href="#"><button type="button" class="btn btn-info btn-sm">Kembalikan</button></a>
                         </td>
                     </tr>
                     <?php endforeach; ?>

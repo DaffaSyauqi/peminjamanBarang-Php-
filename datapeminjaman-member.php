@@ -1,9 +1,3 @@
-<?php
-    require_once('database.php');
-    $data=showdataUser();
-    $nomor=0;
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>User Page</title>
+    <title>Data Peminjaman Page</title>
 
     <!-- Custom fonts for this template-->
     <link href="resource/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -34,16 +28,16 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        
+
         <?php
             session_start();
             if($_SESSION['status']!="login"){
                 header("location:login.php?msg=belum_login");
             } else{
-                include("sidebar.php");
+                include("sidebar-member.php");
             }
         ?>
-
+        
         <!-- End of Sidebar -->
 
         <div id="content-wrapper" class="d-flex flex-column">
@@ -61,15 +55,11 @@
 
                 <div class="container-fluid">
 
-<h1 class="h3 mb-4 text-gray-800">Table User</h1>
+<!-- Page Heading -->
+<h1 class="h3 mb-4 text-gray-800">Table Data Peminjaman</h1>
 
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
-    <div class="card-body">
-        <div class="row justify-content-end pr-3">
-        <a href="#"><button type="button" class="btn btn-success">Tambah Data</button></a>
-        </div>
-    </div>
     <div class="card-body">
         <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -77,30 +67,25 @@
                     <tr>
                         <th>No</th>
                         <th>No Identitas</th>
-                        <th>Nama</th>
+                        <th>Kode Barang</th>
+                        <th>Jumlah</th>
+                        <th>Keperluan</th>
                         <th>Status</th>
-                        <th>Username</th>
-                        <th>Role</th>
-                        <th>Action</th>
+                        <th>Tanggal Pinjam</th>
+                        <th>Tanggal Kembali</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach($data as $user) : ?> 
-                    <?php $nomor++; ?>
                     <tr>
-                        <th scope="row"><?php echo "$nomor"; ?></th>
-                        <td><?php echo "$user[no_identitas]";?></td>
-                        <td><?php echo "$user[nama]";?></td>
-                        <td><?php echo "$user[status]";?></td>
-                        <td><?php echo "$user[username]";?></td>
-                        <td><?php echo "$user[role]";?></td>
-                        <td>
-                        <a href="#"><button type="button" class="btn btn-warning btn-sm">Edit</button></a>
-                        |
-                        <a href="#"><button type="button" class="btn btn-danger btn-sm">Hapus</button></a>
-                        </td>
+                        <td>1</td>
+                        <td>Tiger Nixon</td>
+                        <td>System Architect</td>
+                        <td>Edinburgh</td>
+                        <td>61</td>
+                        <td>2011/04/25</td>
+                        <td>$320,800</td>
+                        <td>dadadadad</td>
                     </tr>
-                    <?php endforeach; ?>
                 </tbody>
             </table>
         </div>
