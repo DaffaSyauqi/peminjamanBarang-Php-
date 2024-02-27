@@ -67,7 +67,7 @@
 <div class="card shadow mb-4">
     <div class="card-body">
         <div class="row justify-content-end pr-3">
-        <a href="#"><button type="button" class="btn btn-success">Tambah Data</button></a>
+        <a href="tambah-user.php"><button type="button" class="btn btn-success">Tambah Data</button></a>
         </div>
     </div>
     <div class="card-body">
@@ -95,9 +95,13 @@
                         <td><?php echo "$user[username]";?></td>
                         <td><?php echo "$user[role]";?></td>
                         <td>
-                        <a href="#"><button type="button" class="btn btn-warning btn-sm">Edit</button></a>
-                        |
-                        <a href="#"><button type="button" class="btn btn-danger btn-sm">Hapus</button></a>
+                            <?php
+                                echo "
+                                <a href='edit-user.php?id=$user[id]'><button type='button' class='btn btn-warning btn-sm'>Edit</button></a>
+                                |
+                                <a href='javascript:deleteData(".$user['id'].")'><button type='button' class='btn btn-danger btn-sm'>Hapus</button></a>
+                                "
+                            ?>
                         </td>
                     </tr>
                     <?php endforeach; ?>
@@ -139,6 +143,14 @@
             </div>
         </div>
     </div>
+
+    <script language="JavaScript" type="text/javascript">
+      function deleteData(id){
+        if (confirm("Apakah anda yakin ingin menghapus ini?")){
+          window.location.href = 'delete-user.php?id=' + id;
+        }
+      }
+    </script>
 
     <!-- Bootstrap core JavaScript-->
     <script src="resource/vendor/jquery/jquery.min.js"></script>

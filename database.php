@@ -10,7 +10,7 @@
 		global $connect; 
 		$uname = $username;
 		$upass = $password;		
-		$hasil = mysqli_query($connect,"select * from user where username='$uname' and password=md5('$upass')");
+		$hasil = mysqli_query($connect,"select * from user where username='$uname' and password='$upass'");
 		$cek = mysqli_num_rows($hasil);
 		if($cek > 0 ){
             $query = mysqli_fetch_array($hasil);
@@ -24,6 +24,18 @@
 		}	
 	}
 
+    
+    function showdataUser()
+    {
+        global $connect;    
+        $hasil=mysqli_query($connect,"SELECT user.id, user.no_identitas, user.nama, user.status, user.username, user.role from user;");
+        $rows=[];
+        while($row = mysqli_fetch_assoc($hasil))
+        {
+            $rows[] = $row;
+        }
+        return $rows;
+    }
 
     function showdataBarang()
     {
@@ -37,19 +49,42 @@
         return $rows;
 
     }
-
-    function showdataUser()
+    function showdataPeminjaman()
     {
         global $connect;    
-        $hasil=mysqli_query($connect,"SELECT user.id, user.no_identitas, user.nama, user.status, user.username, user.role from user;");
+        $hasil=mysqli_query($connect,"SELECT peminjaman.no_identitas, peminjaman.kode_barang, peminjaman.jumlah, peminjaman.keperluan, peminjaman.status, peminjaman.tgl_pinjam, peminjaman.tgl_kembali from peminjaman
+        INNER JOIN user on peminjaman.no_identitas=user.no_identitas INNER JOIN barang on peminjaman.kode_barang=barang.kode_barang and peminjaman.jumlah=barang.jumlah;");
         $rows=[];
         while($row = mysqli_fetch_assoc($hasil))
         {
             $rows[] = $row;
         }
         return $rows;
+
     }
 
+
+    function editData($tablename, $id)
+    {
+        global $connect;
+        $hasil=mysqli_query($connect,"select * from $tablename where id='$id'");
+        return $hasil;
+    }
+
+    function updateUser($table, $data, $id)
+    {
+        global $connect;
+        $sql = "UPDATE $table SET no_identitas = '$data' WHERE id = '$id'";
+        $hasil=mysqli_query($connect,$sql);
+        return $hasil;
+    }
+    function updateBarang($table, $data, $id)
+    {
+        global $connect;
+        $sql = "UPDATE $table SET kode_barang = '$data' WHERE id = '$id'";
+        $hasil=mysqli_query($connect,$sql);
+        return $hasil;
+    }
 
     function delete($tablename,$id)
     {

@@ -68,7 +68,7 @@
 <div class="card shadow mb-4">
 <div class="card-body">
         <div class="row justify-content-end pr-3">
-        <a href="#"><button type="button" class="btn btn-success">Tambah Data</button></a>
+        <a href="tambah-barang.php"><button type="button" class="btn btn-success">Tambah Data</button></a>
         </div>
     </div>
     <div class="card-body">
@@ -98,7 +98,7 @@
                         <td>
                             <?php
                                 echo "
-                                <a href='#'><button type='button' class='btn btn-warning btn-sm'>Edit</button></a>
+                                <a href='edit-barang.php?id=$barang[id]'><button type='button' class='btn btn-warning btn-sm'>Edit</button></a>
                                 |
                                 <a href='javascript:deleteData(".$barang['id'].")'><button type='button' class='btn btn-danger btn-sm'>Hapus</button></a>
                                 "
@@ -147,7 +147,7 @@
 
     <script language="JavaScript" type="text/javascript">
       function deleteData(id){
-        if (confirm("Apakah anda yakin akan menghapus data ini?")){
+        if (confirm("Apakah anda yakin ingin menghapus ini?")){
           window.location.href = 'delete-barang.php?id=' + id;
         }
       }

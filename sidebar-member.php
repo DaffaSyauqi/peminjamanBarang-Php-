@@ -24,7 +24,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="datapeminjaman-member.php">
+                <a class="nav-link" href="datapeminjaman.php">
                     <i class="fas fa-fw fa-database"></i>
                     <span>Data Peminjaman</span></a>
             </li>

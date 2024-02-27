@@ -73,7 +73,7 @@ if ($_SESSION['status']=="login") {
                                             <input type="password" class="form-control form-control-user"
                                                 id="exampleInputPassword" placeholder="Password" name="password">
                                         </div>
-                                        <input type="submit" name="masuk" href="index.php" class="btn btn-primary btn-user btn-block">
+                                        <input type="submit" name="masuk" class="btn btn-primary btn-user btn-block">
                                     </form>
                                 </div>
                             </div>

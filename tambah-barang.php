@@ -1,7 +1,17 @@
 <?php
-    require_once('database.php');
-    $data=showdataPeminjaman();
-    $nomor=0;
+    include "database.php";
+
+    if(isset($_POST['tambah'])) {
+
+        mysqli_query($connect, "insert into barang set
+        kode_barang = '$_POST[kode_barang]',
+        nama_barang = '$_POST[nama_barang]',
+        kategori = '$_POST[kategori]',
+        merek = '$_POST[merek]',
+        jumlah = '$_POST[jumlah]'
+        ");
+        header("location:barang.php");
+    }
 ?>
 
 <!DOCTYPE html>
@@ -15,7 +25,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Data Peminjaman Page</title>
+    <title>TambahBarang</title>
 
     <!-- Custom fonts for this template-->
     <link href="resource/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -34,7 +44,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-
+        
         <?php
             session_start();
             if($_SESSION['status']!="login"){
@@ -43,9 +53,10 @@
                 include("sidebar.php");
             }
         ?>
-        
+
         <!-- End of Sidebar -->
 
+        <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
 
             <!-- Main Content -->
@@ -59,49 +70,27 @@
                 </nav>
                 <!-- End of Topbar -->
 
-                <div class="container-fluid">
-
-<!-- Page Heading -->
-<h1 class="h3 mb-4 text-gray-800">Table Data Peminjaman</h1>
-
-<!-- DataTales Example -->
-<div class="card shadow mb-4">
-    <div class="card-body">
-        <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>No Identitas</th>
-                        <th>Kode Barang</th>
-                        <th>Jumlah</th>
-                        <th>Keperluan</th>
-                        <th>Status</th>
-                        <th>Tanggal Pinjam</th>
-                        <th>Tanggal Kembali</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach($data as $user) : ?> 
-                    <?php $nomor++; ?>
-                    <tr>
-                        <th scope="row"><?php echo "$nomor"; ?></th>
-                        <td><?php echo "$peminjaman[no_identitas]";?></td>
-                        <td><?php echo "$peminjaman[kode_barang]";?></td>
-                        <td><?php echo "$peminjaman[jumlah]";?></td>
-                        <td><?php echo "$peminjaman[keperluan]";?></td>
-                        <td><?php echo "$peminjaman[status]";?></td>
-                        <td><?php echo "$peminjaman[tgl_pinjam]";?></td>
-                        <td><?php echo "$peminjaman[tgl_kembali]";?></td>
-                    </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
+        <div class="container-fluid">
+        <h1 class="h3 mb-4 text-gray-800">Tambah Data Barang</h1>
+            <form class="user" method="POST">
+                <div class="form-group">
+                    <input type="text" class="form-control form-control-user" placeholder="Kode Barang" name="kode_barang">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control form-control-user" placeholder="Nama Barang" name="nama_barang">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control form-control-user" placeholder="Kategori" name="kategori">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control form-control-user" placeholder="Merek" name="merek">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control form-control-user" placeholder="Jumlah" name="jumlah">
+                </div>
+                <input type="submit" name="tambah" class="btn btn-primary btn-user btn-block">
+            </form>
         </div>
-    </div>
-</div>
-
-</div>
 
         </div>
         <!-- End of Content Wrapper -->

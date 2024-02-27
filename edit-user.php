@@ -1,3 +1,8 @@
+<?php
+    include "database.php";
+    $data=editData("user",$_GET['id']);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +14,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Data Peminjaman Page</title>
+    <title>EditUser</title>
 
     <!-- Custom fonts for this template-->
     <link href="resource/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -28,18 +33,19 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-
+        
         <?php
             session_start();
             if($_SESSION['status']!="login"){
                 header("location:login.php?msg=belum_login");
             } else{
-                include("sidebar-member.php");
+                include("sidebar.php");
             }
         ?>
-        
+
         <!-- End of Sidebar -->
 
+        <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
 
             <!-- Main Content -->
@@ -53,46 +59,33 @@
                 </nav>
                 <!-- End of Topbar -->
 
-                <div class="container-fluid">
-
-<!-- Page Heading -->
-<h1 class="h3 mb-4 text-gray-800">Table Data Peminjaman</h1>
-
-<!-- DataTales Example -->
-<div class="card shadow mb-4">
-    <div class="card-body">
-        <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>No Identitas</th>
-                        <th>Kode Barang</th>
-                        <th>Jumlah</th>
-                        <th>Keperluan</th>
-                        <th>Status</th>
-                        <th>Tanggal Pinjam</th>
-                        <th>Tanggal Kembali</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Tiger Nixon</td>
-                        <td>System Architect</td>
-                        <td>Edinburgh</td>
-                        <td>61</td>
-                        <td>2011/04/25</td>
-                        <td>$320,800</td>
-                        <td>dadadadad</td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="container-fluid">
+        <h1 class="h3 mb-4 text-gray-800">Edit Data User</h1>
+            <?php while($user = mysqli_fetch_array($data)): ?>
+            <form class="user" method="POST" action="update-user.php">
+                <input type="hidden" name="id" value="<?php echo $user['id']; ?>">
+                <div class="form-group">
+                    <input type="text" class="form-control form-control-user" placeholder="No Identitas" name="no_identitas" value="<?php echo $user['no_identitas']; ?>">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control form-control-user" placeholder="Nama" name="nama" value="<?php echo $user['nama']; ?>">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control form-control-user" placeholder="Status" name="status" value="<?php echo $user['status']; ?>">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control form-control-user" placeholder="Username" name="username" value="<?php echo $user['username']; ?>">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control form-control-user" placeholder="Password" name="password" value="<?php echo $user['password']; ?>">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control form-control-user" placeholder="Role" name="role" value="<?php echo $user['role']; ?>">
+                </div>
+                <input value="update" type="submit" name="edit" class="btn btn-primary btn-user btn-block">
+            </form>
+            <?php endwhile; ?>
         </div>
-    </div>
-</div>
-
-</div>
 
         </div>
         <!-- End of Content Wrapper -->
