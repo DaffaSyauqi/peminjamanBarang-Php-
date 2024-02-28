@@ -1,6 +1,6 @@
 <?php
     require_once('database.php');
-    $data=showdataBarang();
+    $data=showdataPeminjaman();
     $nomor=0;
 ?>
 
@@ -15,7 +15,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Barang Page</title>
+    <title>Data Peminjaman Page</title>
 
     <!-- Custom fonts for this template-->
     <link href="resource/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -34,7 +34,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        
+
         <?php
             session_start();
             if($_SESSION['status']!="login"){
@@ -43,7 +43,7 @@
                 include("sidebar-member.php");
             }
         ?>
-
+        
         <!-- End of Sidebar -->
 
         <div id="content-wrapper" class="d-flex flex-column">
@@ -62,7 +62,7 @@
                 <div class="container-fluid">
 
 <!-- Page Heading -->
-<h1 class="h3 mb-4 text-gray-800">Table Barang</h1>
+<h1 class="h3 mb-4 text-gray-800">Table Data Peminjaman</h1>
 
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
@@ -72,23 +72,27 @@
                 <thead>
                     <tr>
                         <th>No</th>
+                        <th>No Identitas</th>
                         <th>Kode Barang</th>
-                        <th>Nama Barang</th>
-                        <th>Kategori</th>
-                        <th>Merk</th>
                         <th>Jumlah</th>
+                        <th>Keperluan</th>
+                        <th>Status</th>
+                        <th>Tanggal Pinjam</th>
+                        <th>Tanggal Kembali</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach($data as $barang) : ?> 
+                    <?php foreach($data as $user) : ?> 
                     <?php $nomor++; ?>
                     <tr>
                         <th scope="row"><?php echo "$nomor"; ?></th>
-                        <td><?php echo "$barang[kode_barang]";?></td>
-                        <td><?php echo "$barang[nama_barang]";?></td>
-                        <td><?php echo "$barang[kategori]";?></td>
-                        <td><?php echo "$barang[merek]";?></td>
-                        <td><?php echo "$barang[jumlah]";?></td>
+                        <td><?php echo "$peminjaman[no_identitas]";?></td>
+                        <td><?php echo "$peminjaman[kode_barang]";?></td>
+                        <td><?php echo "$peminjaman[jumlah]";?></td>
+                        <td><?php echo "$peminjaman[keperluan]";?></td>
+                        <td><?php echo "$peminjaman[status]";?></td>
+                        <td><?php echo "$peminjaman[tgl_pinjam]";?></td>
+                        <td><?php echo "$peminjaman[tgl_kembali]";?></td>
                     </tr>
                     <?php endforeach; ?>
                 </tbody>

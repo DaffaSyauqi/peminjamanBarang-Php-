@@ -63,26 +63,10 @@
 
     }
 
-
     function editData($tablename, $id)
     {
         global $connect;
         $hasil=mysqli_query($connect,"select * from $tablename where id='$id'");
-        return $hasil;
-    }
-
-    function updateUser($table, $data, $id)
-    {
-        global $connect;
-        $sql = "UPDATE $table SET no_identitas = '$data' WHERE id = '$id'";
-        $hasil=mysqli_query($connect,$sql);
-        return $hasil;
-    }
-    function updateBarang($table, $data, $id)
-    {
-        global $connect;
-        $sql = "UPDATE $table SET kode_barang = '$data' WHERE id = '$id'";
-        $hasil=mysqli_query($connect,$sql);
         return $hasil;
     }
 

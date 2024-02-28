@@ -1,6 +1,19 @@
 <?php
     include "database.php";
     $data=editData("user",$_GET['id']);
+
+    if(isset($_POST['edit'])) {
+        mysqli_query($connect, "update user set
+        no_identitas = '$_POST[no_identitas]',
+        nama = '$_POST[nama]',
+        status = '$_POST[status]',
+        username = '$_POST[username]',
+        password = '$_POST[password]',
+        role = '$_POST[role]'
+        where id = '$_GET[id]'");
+
+        header("location:user.php");
+    }
 ?>
 
 <!DOCTYPE html>
@@ -62,7 +75,7 @@
         <div class="container-fluid">
         <h1 class="h3 mb-4 text-gray-800">Edit Data User</h1>
             <?php while($user = mysqli_fetch_array($data)): ?>
-            <form class="user" method="POST" action="update-user.php">
+            <form class="user" method="POST">
                 <input type="hidden" name="id" value="<?php echo $user['id']; ?>">
                 <div class="form-group">
                     <input type="text" class="form-control form-control-user" placeholder="No Identitas" name="no_identitas" value="<?php echo $user['no_identitas']; ?>">
@@ -82,7 +95,7 @@
                 <div class="form-group">
                     <input type="text" class="form-control form-control-user" placeholder="Role" name="role" value="<?php echo $user['role']; ?>">
                 </div>
-                <input value="update" type="submit" name="edit" class="btn btn-primary btn-user btn-block">
+                <input type="submit" name="edit" class="btn btn-primary btn-user btn-block">
             </form>
             <?php endwhile; ?>
         </div>

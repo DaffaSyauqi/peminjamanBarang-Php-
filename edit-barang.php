@@ -1,6 +1,18 @@
 <?php
     include "database.php";
-    $data=editData("barang",$_GET['id']);
+    $data=editData("barang", $_GET['id']);
+
+    if(isset($_POST['edit'])) {
+        mysqli_query($connect, "update barang set
+        kode_barang = '$_POST[kode_barang]',
+        nama_barang = '$_POST[nama_barang]',
+        kategori = '$_POST[kategori]',
+        merek = '$_POST[merek]',
+        jumlah = '$_POST[jumlah]'
+        where id = '$_GET[id]'");
+
+        header("location:barang.php");
+    }
 ?>
 
 <!DOCTYPE html>
@@ -62,7 +74,7 @@
         <div class="container-fluid">
         <h1 class="h3 mb-4 text-gray-800">Edit Data Barang</h1>
             <?php while($barang = mysqli_fetch_array($data)): ?>
-            <form class="user" method="POST" action="update-barang.php">
+            <form class="user" method="POST">
                 <input type="hidden" name="id" value="<?php echo $barang['id']; ?>">
                 <div class="form-group">
                     <input type="text" class="form-control form-control-user" placeholder="Kode Barang" name="kode_barang" value="<?php echo $barang['kode_barang']; ?>">
@@ -79,7 +91,7 @@
                 <div class="form-group">
                     <input type="text" class="form-control form-control-user" placeholder="Jumlah" name="jumlah" value="<?php echo $barang['jumlah']; ?>">
                 </div>
-                <input type="submit" name="tambah" class="btn btn-primary btn-user btn-block">
+                <input type="submit" name="edit" class="btn btn-primary btn-user btn-block">
             </form>
             <?php endwhile; ?>
         </div>
