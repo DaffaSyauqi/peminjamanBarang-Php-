@@ -1,6 +1,7 @@
 <?php
     require_once('database.php');
     $data=showdataBarang();
+    $peminjaman=showdataPeminjaman();
     $nomor=0;
 ?>
 
@@ -54,7 +55,7 @@
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
                     <div class=" container justify-content-end">
-                        <a href="logout.php"><button type="button" class="btn btn-outline-primary">Log Out</button></a>
+                        <a href="logout.php"><button type="button" class="btn btn-outline-dark">Log Out</button></a>
                     </div>
                 </nav>
                 <!-- End of Topbar -->

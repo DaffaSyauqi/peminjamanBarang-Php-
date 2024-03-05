@@ -1,21 +1,22 @@
-<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+<ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar">
 
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center">
                 <div class="sidebar-brand-text mx-3">Peminjaman Barang <sup></sup></div>
             </a>
 
-            <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
-            <!-- Nav Item - Dashboard -->
             <li class="nav-item">
                 <a class="nav-link" href="index-member.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
 
-            <!-- Nav Item - Tables -->
+            <li class="nav-item">
+                <a class="nav-link" href="peminjaman.php">
+                    <i class="fas fa-fw fa-hand-holding"></i>
+                    <span>Peminjaman</span></a>
+            </li>
 
             <li class="nav-item">
                 <a class="nav-link" href="barang-member.php">
@@ -29,9 +30,6 @@
                     <span>Data Peminjaman</span></a>
             </li>
 
-            <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
-            <!-- Sidebar Toggler (Sidebar) -->
-
-        </ul>
+</ul>

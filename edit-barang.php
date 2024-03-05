@@ -26,7 +26,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>EditBarang</title>
+    <title>Edit Barang</title>
 
     <!-- Custom fonts for this template-->
     <link href="resource/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -66,7 +66,7 @@
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
                     <div class=" container justify-content-end">
-                        <a href="logout.php"><button type="button" class="btn btn-outline-primary">Log Out</button></a>
+                        <a href="logout.php"><button type="button" class="btn btn-outline-dark">Log Out</button></a>
                     </div>
                 </nav>
                 <!-- End of Topbar -->
@@ -91,7 +91,7 @@
                 <div class="form-group">
                     <input type="text" class="form-control form-control-user" placeholder="Jumlah" name="jumlah" value="<?php echo $barang['jumlah']; ?>">
                 </div>
-                <input type="submit" name="edit" class="btn btn-primary btn-user btn-block">
+                <input type="submit" name="edit" class="btn btn-dark btn-user btn-block">
             </form>
             <?php endwhile; ?>
         </div>

@@ -46,7 +46,7 @@ if ($_SESSION['status']=="login") {
 
 </head>
 
-<body class="bg-gradient-primary">
+<body class="">
 
     <div class="container">
 
@@ -55,14 +55,14 @@ if ($_SESSION['status']=="login") {
 
             <div class="col-xl-5 col-md-5">
 
-                <div class="card o-hidden border-0 shadow-lg my-5">
+                <div class="card o-hidden border-0 shadow-lg my-5 bg-gradient-dark">
                     <div class="card-body p-0">
                         <!-- Nested Row within Card Body -->
                         <div class="row justify-content-center">
                             <div class="col-lg-10">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Welcome!</h1>
+                                        <h1 class="h4 text-white mb-4">Welcome!</h1>
                                     </div>
                                     <form class="user" method="POST">
                                         <div class="form-group">
@@ -73,7 +73,7 @@ if ($_SESSION['status']=="login") {
                                             <input type="password" class="form-control form-control-user"
                                                 id="exampleInputPassword" placeholder="Password" name="password">
                                         </div>
-                                        <input type="submit" name="masuk" class="btn btn-primary btn-user btn-block">
+                                        <input type="submit" name="masuk" class="btn btn-dark btn-user btn-block">
                                     </form>
                                 </div>
                             </div>

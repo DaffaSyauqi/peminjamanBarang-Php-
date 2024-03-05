@@ -49,6 +49,7 @@
         return $rows;
 
     }
+
     function showdataPeminjaman()
     {
         global $connect;    
@@ -75,5 +76,20 @@
         global $connect;
         $hasil=mysqli_query($connect,"delete from $tablename where id='$id'");
         return $hasil;
+    }
+
+    function tambahPeminjaman($no_identitas, $kode_barang, $jumlah, $keperluan, $status, $tgl_pinjam, $tgl_kembali) {
+        global $connect; 
+        // Hindari SQL injection dengan menggunakan prepared statement
+        $stmt = $connect->prepare("INSERT INTO peminjaman (no_identitas, kode_barang, jumlah, keperluan, status, tgl_pinjam, tgl_kembali) VALUES (?, ?, ?, ?, ?, ?, ?)");
+        
+        // Binding parameter
+        $stmt->bind_param("ssissss", $no_identitas, $kode_barang, $jumlah, $keperluan, $status, $tgl_pinjam, $tgl_kembali);
+
+        // Eksekusi statement
+        $stmt->execute();
+
+        // Tutup statement
+        $stmt->close();
     }
 ?>
