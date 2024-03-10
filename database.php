@@ -17,6 +17,7 @@
             $_SESSION['id_user'] = $query['id_user'];
             $_SESSION['username'] = $query['username'];
             $_SESSION['role'] = $query['role'];
+            $_SESSION['no_identitas'] = $query['no_identitas'];
 			return true;		
         }
 		else {
@@ -51,18 +52,18 @@
     }
 
     function showdataPeminjaman()
+{
+    global $connect;    
+    $hasil=mysqli_query($connect,"SELECT * FROM peminjaman");
+    $rows=[];
+    while($row = mysqli_fetch_assoc($hasil))
     {
-        global $connect;    
-        $hasil=mysqli_query($connect,"SELECT peminjaman.no_identitas, peminjaman.kode_barang, peminjaman.jumlah, peminjaman.keperluan, peminjaman.status, peminjaman.tgl_pinjam, peminjaman.tgl_kembali from peminjaman
-        INNER JOIN user on peminjaman.no_identitas=user.no_identitas INNER JOIN barang on peminjaman.kode_barang=barang.kode_barang and peminjaman.jumlah=barang.jumlah;");
-        $rows=[];
-        while($row = mysqli_fetch_assoc($hasil))
-        {
-            $rows[] = $row;
-        }
-        return $rows;
-
+        $rows[] = $row;
     }
+    return $rows;
+}
+    
+    
 
     function editData($tablename, $id)
     {
@@ -76,20 +77,5 @@
         global $connect;
         $hasil=mysqli_query($connect,"delete from $tablename where id='$id'");
         return $hasil;
-    }
-
-    function tambahPeminjaman($no_identitas, $kode_barang, $jumlah, $keperluan, $status, $tgl_pinjam, $tgl_kembali) {
-        global $connect; 
-        // Hindari SQL injection dengan menggunakan prepared statement
-        $stmt = $connect->prepare("INSERT INTO peminjaman (no_identitas, kode_barang, jumlah, keperluan, status, tgl_pinjam, tgl_kembali) VALUES (?, ?, ?, ?, ?, ?, ?)");
-        
-        // Binding parameter
-        $stmt->bind_param("ssissss", $no_identitas, $kode_barang, $jumlah, $keperluan, $status, $tgl_pinjam, $tgl_kembali);
-
-        // Eksekusi statement
-        $stmt->execute();
-
-        // Tutup statement
-        $stmt->close();
     }
 ?>

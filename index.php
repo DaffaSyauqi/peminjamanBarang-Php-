@@ -24,10 +24,7 @@
 
 <body id="page-top">
 
-    <!-- Page Wrapper -->
     <div id="wrapper">
-
-        <!-- Sidebar -->
         
         <?php
             session_start();
@@ -38,33 +35,18 @@
             }
         ?>
 
-        <!-- End of Sidebar -->
-
-        <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
-
-            <!-- Main Content -->
             <div id="content">
-
-                <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
                     <div class=" container justify-content-end">
                         <a href="logout.php"><button type="button" class="btn btn-outline-dark">Log Out</button></a>
                     </div>
                 </nav>
-                <!-- End of Topbar -->
-
-        <div class="container-fluid">
-            <h1>Dashboard Admin</h1>
+                <div class="container-fluid">
+                    <h1>Dashboard Admin</h1>
+                </div>
+            </div>
         </div>
-
-        </div>
-        <!-- End of Content Wrapper -->
-
-    </div>
-    <!-- End of Page Wrapper -->
-
-    <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
