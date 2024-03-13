@@ -1,6 +1,7 @@
 <?php
 session_start();
 include "database.php";
+date_default_timezone_set('Asia/Jakarta');
 
 if(isset($_POST['pinjam'])) {
     // Mendapatkan tanggal dan waktu saat ini
