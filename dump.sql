@@ -40,7 +40,7 @@ CREATE TABLE `barang` (
 
 LOCK TABLES `barang` WRITE;
 /*!40000 ALTER TABLE `barang` DISABLE KEYS */;
-INSERT INTO `barang` VALUES (1,'1111','Laptop','Eletronik','Lenovo',10),(2,'2222','MacBook','Eletronik','Apple',10),(3,'3333','Terminal','Eletronik','Robot',50);
+INSERT INTO `barang` VALUES (1,'1111','Laptop','Eletronik','Lenovo',100),(2,'2222','MacBook','Eletronik','Apple',20),(3,'3333','Terminal','Eletronik','Robot',50);
 /*!40000 ALTER TABLE `barang` ENABLE KEYS */;
 UNLOCK TABLES;
 
