@@ -52,18 +52,18 @@
             }
         ?>
 
-        <div id="content-wrapper" class="d-flex flex-column">
+        <div id="content-wrapper" class="d-flex flex-column bg-gradient-secondary">
 
             <div id="content">
 
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                <nav class="navbar navbar-expand navbar-light bg-dark topbar mb-4 static-top shadow">
                     <div class=" container justify-content-end">
-                        <a href="logout.php"><button type="button" class="btn btn-outline-dark">Log Out</button></a>
+                        <a href="logout.php"><button type="button" class="btn btn-outline-info">Log Out</button></a>
                     </div>
                 </nav>
 
         <div class="container-fluid">
-        <h1 class="h3 mb-4 text-gray-800">Tambah Data User</h1>
+        <h1 class="h3 mb-4 text-light">Tambah Data User</h1>
             <form class="user" method="POST">
                 <div class="form-group">
                     <input type="text" class="form-control form-control-user" placeholder="No Identitas" name="no_identitas">
@@ -80,10 +80,10 @@
                 <div class="form-group">
                     <input type="password" class="form-control form-control-user" placeholder="Password" name="password">
                 </div>
-                <div class="form-group">
+                <div class="form-group pb-1">
                     <input type="text" class="form-control form-control-user" placeholder="Role" name="role">
                 </div>
-                <input type="submit" name="tambah" class="btn btn-primary btn-user btn-block">
+                <input type="submit" name="tambah" class="btn btn-info btn-user btn-block">
             </form>
         </div>
 

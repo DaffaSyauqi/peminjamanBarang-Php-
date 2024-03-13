@@ -32,19 +32,19 @@ $nomor = 0;
             include("sidebar-member.php");
         }
         ?>
-        <div id="content-wrapper" class="d-flex flex-column">
+        <div id="content-wrapper" class="d-flex flex-column bg-gradient-secondary">
             <div id="content">
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                <nav class="navbar navbar-expand navbar-light bg-dark topbar mb-4 static-top shadow">
                     <div class="container justify-content-end">
-                        <a href="logout.php"><button type="button" class="btn btn-outline-dark">Log Out</button></a>
+                        <a href="logout.php"><button type="button" class="btn btn-outline-info">Log Out</button></a>
                     </div>
                 </nav>
                 <div class="container-fluid">
-                    <h1 class="h3 mb-4 text-gray-800">Table Data Peminjaman</h1>
-                    <div class="card shadow mb-4">
+                    <h1 class="h3 mb-4 text-light">Table Data Peminjaman</h1>
+                    <div class="card shadow text-light bg-secondary mb-4">
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <table class="table table-bordered text-light" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th>No</th>
@@ -72,7 +72,7 @@ $nomor = 0;
                                                     <?php if ($peminjaman['tgl_kembali'] == NULL) : ?>
                                                         <form action="pengembalian.php" method="post">
                                                             <input type="hidden" name="id" value="<?php echo $peminjaman['id']; ?>">
-                                                            <button type="submit" name="kembali" class="btn btn-primary">Kembali</button>
+                                                            <button type="submit" name="kembali" class="btn btn-info">Kembali</button>
                                                         </form>
                                                     <?php else: ?>
                                                         <?php echo "$peminjaman[tgl_kembali]"; ?>

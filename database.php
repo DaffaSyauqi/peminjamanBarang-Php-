@@ -15,6 +15,7 @@
 		if($cek > 0 ){
             $query = mysqli_fetch_array($hasil);
             $_SESSION['id'] = $query['id'];
+            $_SESSION['nama'] = $query['nama'];
             $_SESSION['username'] = $query['username'];
             $_SESSION['role'] = $query['role'];
             $_SESSION['no_identitas'] = $query['no_identitas'];

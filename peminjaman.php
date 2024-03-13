@@ -38,7 +38,7 @@ if(isset($_POST['pinjam'])) {
             echo "Error: " . $query_update . "<br>" . mysqli_error($connect);
         }
     } else {
-        echo "Jumlah barang yang diminta tidak tersedia.";
+        echo "";
     }
 }
 ?>
@@ -80,25 +80,25 @@ if(isset($_POST['pinjam'])) {
         }
         ?>
 
-        <div id="content-wrapper" class="d-flex flex-column">
+        <div id="content-wrapper" class="d-flex flex-column bg-gradient-secondary">
 
             <div id="content">
 
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                <nav class="navbar navbar-expand navbar-light bg-dark topbar mb-4 static-top shadow">
                     <div class=" container justify-content-end">
-                        <a href="logout.php"><button type="button" class="btn btn-outline-dark">Log Out</button></a>
+                        <a href="logout.php"><button type="button" class="btn btn-outline-info">Log Out</button></a>
                     </div>
                 </nav>
 
                 <div class="container-fluid">
-                    <h1 class="h3 mb-4 text-gray-800">Peminjaman Barang</h1>
+                    <h1 class="h3 mb-4 text-light">Peminjaman Barang</h1>
                     <form class="user" method="POST" action="peminjaman.php">
                     <div class="form-group">
                         <input type="hidden" class="form-control form-control-user" name="no_identitas" value="">
                     </div>
 
     <div class="form-group">
-        <label for="kode_barang">Kode Barang</label>
+        <label for="kode_barang" class="text-light">Kode Barang</label>
         <select class="form-control form-control-user" name="kode_barang">
             <?php
                 $barang_data = showdataBarang();
@@ -109,11 +109,11 @@ if(isset($_POST['pinjam'])) {
         </select>
     </div>
     <div class="form-group">
-        <label for="jumlah">Jumlah dipinjam</label>
+        <label for="jumlah" class="text-light">Jumlah dipinjam</label>
         <input type="number" class="form-control form-control-user" placeholder="Jumlah" name="jumlah">
     </div>
     <div class="form-group">
-        <label for="keperluan">Keperluan</label>
+        <label for="keperluan" class="text-light">Keperluan</label>
         <input type="text" class="form-control form-control-user" placeholder="Keperluan" name="keperluan">
     </div>
     <div class="form-group">
@@ -125,10 +125,10 @@ if(isset($_POST['pinjam'])) {
     <div class="form-group">
         <input type="date" class="form-control form-control-user" style="display:none;" name="tgl_kembali">
     </div>
-    <div class="form-group">
+    <div class="form-group pb-1">
         <input type="hidden" class="form-control form-control-user" name="id_login">
     </div>
-    <input type="submit" name="pinjam" class="btn btn-dark btn-user btn-block">
+    <input type="submit" name="pinjam" class="btn btn-info btn-user btn-block">
 </form>
 
                 </div>

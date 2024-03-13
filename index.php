@@ -1,3 +1,9 @@
+<?php
+    session_start();
+    include "database.php";
+    $nama = $_SESSION['nama'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,7 +33,6 @@
     <div id="wrapper">
         
         <?php
-            session_start();
             if($_SESSION['status']!="login"){
                 header("location:login.php?msg=belum_login");
             } else{
@@ -35,22 +40,65 @@
             }
         ?>
 
-        <div id="content-wrapper" class="d-flex flex-column">
+        <div id="content-wrapper" class="d-flex flex-column bg-gradient-secondary">
+
             <div id="content">
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                <nav class="navbar navbar-expand navbar-dark bg-dark topbar mb-4 static-top shadow">
                     <div class=" container justify-content-end">
-                        <a href="logout.php"><button type="button" class="btn btn-outline-dark">Log Out</button></a>
+                        <a href="logout.php"><button type="button" class="btn btn-outline-info">Log Out</button></a>
                     </div>
                 </nav>
-                <div class="container-fluid">
-                    <h1>Dashboard Admin</h1>
+
+        <div class="container-fluid ">
+            <h1 class="text-light pb-3">Dashboard Admin</h1>
+            <div class="jumbotron jumbotron-fluid">
+                <div class="container">
+                    <h1 class="display-4">Halo <?php echo $nama;?></h1>
+                    <p class="lead">Terima kasih telah mengunjungi situs web kami. Kami sangat menghargai kehadiran Anda di sini. Semoga Anda menemukan informasi yang berguna dan menarik selama menjelajahi halaman kami. Jangan ragu untuk menjelajahi konten kami dan jangan sungkan untuk menghubungi kami jika Anda memiliki pertanyaan atau masukan. Sekali lagi, selamat datang!</p>
+                </div>
+            </div>
+            
+            <!-- Tabel Data Barang Sering Dipinjam -->
+            <div class="card shadow text-light bg-secondary mb-4">
+                <div class="card-body py-3">
+                    <h6 class="m-0 font-weight-bold">Data Barang Sering Dipinjam</h6>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered text-light" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Kode Barang</th>
+                                    <th>Jumlah Pinjam</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php 
+                                // Panggil fungsi getBarangSeringDipinjam() dari database.php
+                                $barang_sering_dipinjam = getBarangSeringDipinjam();
+                                foreach ($barang_sering_dipinjam as $barang) : 
+                                ?>
+                                <tr>
+                                    <td><?php echo $barang['kode_barang']; ?></td>
+                                    <td><?php echo $barang['jumlah_pinjam']; ?></td>
+                                </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
+
+        </div>
+
+    </div>
+
+    <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
-
 
     <!-- Bootstrap core JavaScript-->
     <script src="resource/vendor/jquery/jquery.min.js"></script>

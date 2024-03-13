@@ -41,21 +41,21 @@
             }
         ?>
 
-        <div id="content-wrapper" class="d-flex flex-column">
+        <div id="content-wrapper" class="d-flex flex-column bg-gradient-secondary">
 
             <div id="content">
 
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                <nav class="navbar navbar-expand navbar-light bg-dark topbar mb-4 static-top shadow">
                     <div class=" container justify-content-end">
-                        <a href="logout.php"><button type="button" class="btn btn-outline-dark">Log Out</button></a>
+                        <a href="logout.php"><button type="button" class="btn btn-outline-info">Log Out</button></a>
                     </div>
                 </nav>
 
                 <div class="container-fluid">
 
-<h1 class="h3 mb-4 text-gray-800">Table Data Peminjaman</h1>
+<h1 class="h3 mb-4 text-light">Table Data Peminjaman</h1>
 
-<div class="card shadow mb-4">
+<div class="card shadow text-light bg-secondary mb-4">
 <div class="card-body">
         <div class="row justify-content-end pr-3">
         <button onclick="printData()" class="btn btn-success">
@@ -65,7 +65,7 @@
     </div>
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <table class="table table-bordered text-light" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
                         <th>No</th>
@@ -89,7 +89,13 @@
                         <td><?php echo "$peminjaman[keperluan]";?></td>
                         <td><?php echo "$peminjaman[status]";?></td>
                         <td><?php echo "$peminjaman[tgl_pinjam]";?></td>
-                        <td><?php echo "$peminjaman[tgl_kembali]";?></td>
+                        <td>
+                            <?php if ($peminjaman['tgl_kembali'] == NULL) : ?>
+                                <?php echo "Belum di kembalikan"; ?>
+                            <?php else: ?>
+                                <?php echo "$peminjaman[tgl_kembali]"; ?>
+                            <?php endif; ?>
+                        </td>
                     </tr>
                     <?php endforeach; ?>
                 </tbody>
