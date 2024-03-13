@@ -14,7 +14,7 @@
 		$cek = mysqli_num_rows($hasil);
 		if($cek > 0 ){
             $query = mysqli_fetch_array($hasil);
-            $_SESSION['id_user'] = $query['id_user'];
+            $_SESSION['id'] = $query['id'];
             $_SESSION['username'] = $query['username'];
             $_SESSION['role'] = $query['role'];
             $_SESSION['no_identitas'] = $query['no_identitas'];
@@ -25,6 +25,7 @@
 		}	
 	}
 
+    
     
     function showdataUser()
     {
@@ -52,7 +53,7 @@
     }
 
     function showdataPeminjaman()
-{
+    {
     global $connect;    
     $hasil=mysqli_query($connect,"SELECT * FROM peminjaman");
     $rows=[];
@@ -61,7 +62,7 @@
         $rows[] = $row;
     }
     return $rows;
-}
+    }
     
     
 
@@ -77,5 +78,19 @@
         global $connect;
         $hasil=mysqli_query($connect,"delete from $tablename where id='$id'");
         return $hasil;
+    }
+
+    function getBarangSeringDipinjam($limit = 5) {
+        global $connect;
+    
+        $query = "SELECT kode_barang, COUNT(*) as jumlah_pinjam FROM peminjaman GROUP BY kode_barang ORDER BY jumlah_pinjam DESC LIMIT $limit";
+        $result = mysqli_query($connect, $query);
+    
+        $barang_sering_dipinjam = array();
+        while ($row = mysqli_fetch_assoc($result)) {
+            $barang_sering_dipinjam[] = $row;
+        }
+    
+        return $barang_sering_dipinjam;
     }
 ?>

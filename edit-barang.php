@@ -80,7 +80,7 @@
                     <input type="text" class="form-control form-control-user" placeholder="Merek" name="merek" value="<?php echo $barang['merek']; ?>">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-user" placeholder="Jumlah" name="jumlah" value="<?php echo $barang['jumlah']; ?>">
+                    <input type="number" class="form-control form-control-user" placeholder="Jumlah" name="jumlah" value="<?php echo $barang['jumlah']; ?>">
                 </div>
                 <input type="submit" name="edit" class="btn btn-dark btn-user btn-block">
             </form>

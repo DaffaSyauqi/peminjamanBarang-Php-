@@ -1,27 +1,49 @@
 <?php
-    session_start();
-    include "database.php";
+session_start();
+include "database.php";
 
-    // Handle form submission
-    if(isset($_POST['pinjam'])) {
-        $no_identitas = $_SESSION['no_identitas'];
-        $kode_barang = $_POST['kode_barang'];
-        $jumlah = $_POST['jumlah'];
-        $keperluan = $_POST['keperluan'];
-        $status = 'Dipinjam';
-        $tgl_pinjam = date('Y-m-d H:i:s');
-        $tgl_kembali = $_POST['tgl_kembali'];
+if(isset($_POST['pinjam'])) {
+    // Mendapatkan tanggal dan waktu saat ini
+    $tgl_pinjam = date('Y-m-d H:i:s'); // Format MySQL datetime untuk tanggal hari ini
 
-        // Insert data into peminjaman table
-        $query = "INSERT INTO peminjaman (no_identitas, kode_barang, jumlah, keperluan, status, tgl_pinjam, tgl_kembali) 
-                  VALUES ('$no_identitas', '$kode_barang', $jumlah, '$keperluan', '$status', '$tgl_pinjam', '$tgl_kembali')";
-        mysqli_query($connect, $query);
+    // Mendapatkan no_identitas dari sesi yang sedang berjalan
+    $no_identitas = $_SESSION['no_identitas'];
 
-        // Update jumlah barang in the barang table
-        $update_query = "UPDATE barang SET jumlah = jumlah - $jumlah WHERE kode_barang = '$kode_barang'";
-        mysqli_query($connect, $update_query);
+    // Mendapatkan id_login dari sesi yang sedang berjalan
+    $id_login = $_SESSION['id']; // Anda mungkin perlu menyesuaikan ini dengan kolom yang sesuai dari tabel pengguna
+
+    // Menyimpan data peminjaman ke database
+    $kode_barang = mysqli_real_escape_string($connect, $_POST['kode_barang']);
+    $jumlah = mysqli_real_escape_string($connect, $_POST['jumlah']);
+    $keperluan = mysqli_real_escape_string($connect, $_POST['keperluan']);
+
+    // Periksa ketersediaan barang
+    $query_check = "SELECT jumlah FROM barang WHERE kode_barang = '$kode_barang'";
+    $result_check = mysqli_query($connect, $query_check);
+    $row_check = mysqli_fetch_assoc($result_check);
+    $jumlah_tersedia = $row_check['jumlah'];
+
+    if ($jumlah_tersedia >= $jumlah) {
+        // Kurangi jumlah barang di database
+        $query_update = "UPDATE barang SET jumlah = jumlah - $jumlah WHERE kode_barang = '$kode_barang'";
+        if (mysqli_query($connect, $query_update)) {
+            // Jika pengurangan jumlah barang berhasil, simpan data peminjaman
+            $query_insert = "INSERT INTO peminjaman (no_identitas, kode_barang, jumlah, keperluan, tgl_pinjam, tgl_kembali, id_login) VALUES ('$no_identitas', '$kode_barang', '$jumlah', '$keperluan', '$tgl_pinjam', NULL, '$id_login')";
+            if (mysqli_query($connect, $query_insert)) {
+                echo "";
+            } else {
+                echo "Error: " . $query_insert . "<br>" . mysqli_error($connect);
+            }
+        } else {
+            echo "Error: " . $query_update . "<br>" . mysqli_error($connect);
+        }
+    } else {
+        echo "Jumlah barang yang diminta tidak tersedia.";
     }
+}
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -72,12 +94,8 @@
                     <h1 class="h3 mb-4 text-gray-800">Peminjaman Barang</h1>
                     <form class="user" method="POST" action="peminjaman.php">
                     <div class="form-group">
-                    <?php
-        // $user_data = checkLogin($_SESSION['username']);
-        // $no_identitas = $user_data[0]['no_identitas']; // Sesuaikan dengan struktur data yang sesuai
-    ?>
-    <input type="hidden" class="form-control form-control-user" placeholder="No Identitas" name="no_identitas" value="<?php echo $no_identitas ?>">
-</div>
+                        <input type="hidden" class="form-control form-control-user" name="no_identitas" value="">
+                    </div>
 
     <div class="form-group">
         <label for="kode_barang">Kode Barang</label>
@@ -99,14 +117,16 @@
         <input type="text" class="form-control form-control-user" placeholder="Keperluan" name="keperluan">
     </div>
     <div class="form-group">
-        <input type="hidden" class="form-control form-control-user" placeholder="Status" name="status" value="">
+        <input type="hidden" class="form-control form-control-user" placeholder="Status" name="status">
     </div>
     <div class="form-group">
-        <input type="hidden" class="form-control form-control-user" placeholder="Tanggal Pinjam" name="tgl_pinjam" value="">
+        <input type="date" class="form-control form-control-user" style="display:none;" name="tgl_pinjam">
     </div>
     <div class="form-group">
-        <label for="tgl_kembali">Tanggal Pengembalian</label>
-        <input type="date" class="form-control form-control-user" placeholder="Tanggal Kembali" name="tgl_kembali">
+        <input type="date" class="form-control form-control-user" style="display:none;" name="tgl_kembali">
+    </div>
+    <div class="form-group">
+        <input type="hidden" class="form-control form-control-user" name="id_login">
     </div>
     <input type="submit" name="pinjam" class="btn btn-dark btn-user btn-block">
 </form>

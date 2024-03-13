@@ -43,14 +43,45 @@
 
             <div id="content">
 
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                <nav class="navbar navbar-expand navbar-dark bg-light topbar mb-4 static-top shadow">
                     <div class=" container justify-content-end">
                         <a href="logout.php"><button type="button" class="btn btn-outline-dark">Log Out</button></a>
                     </div>
                 </nav>
 
-        <div class="container-fluid">
-            <h1>Dashboard Member</h1>
+        <div class="container-fluid ">
+            <h1 class="pb-5">Dashboard Member</h1>
+            
+            <!-- Tabel Data Barang Sering Dipinjam -->
+            <div class="card shadow  mb-4">
+                <div class="card-body py-3">
+                    <h6 class="m-0 font-weight-bold">Data Barang Sering Dipinjam</h6>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered " id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Kode Barang</th>
+                                    <th>Jumlah Pinjam</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php 
+                                // Panggil fungsi getBarangSeringDipinjam() dari database.php
+                                $barang_sering_dipinjam = getBarangSeringDipinjam();
+                                foreach ($barang_sering_dipinjam as $barang) : 
+                                ?>
+                                <tr>
+                                    <td><?php echo $barang['kode_barang']; ?></td>
+                                    <td><?php echo $barang['jumlah_pinjam']; ?></td>
+                                </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
 
         </div>
