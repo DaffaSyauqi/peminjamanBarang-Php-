@@ -51,7 +51,7 @@
                 </nav>
 
         <div class="container-fluid ">
-            <h1 class="text-light pb-3">Dashboard Admin</h1>
+            <h1 class="text-light pb-5">Dashboard Admin</h1>
             <div class="jumbotron jumbotron-fluid">
                 <div class="container">
                     <h1 class="display-4">Halo <?php echo $nama;?></h1>
