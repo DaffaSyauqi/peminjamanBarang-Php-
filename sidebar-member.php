@@ -14,7 +14,7 @@
 
             <li class="nav-item">
                 <a class="nav-link" href="peminjaman.php">
-                    <i class="fas fa-fw fa-hand-holding"></i>
+                    <i class="fas fa-money-check"></i>
                     <span>Peminjaman</span></a>
             </li>
 
