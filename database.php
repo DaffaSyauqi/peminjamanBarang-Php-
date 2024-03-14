@@ -26,7 +26,8 @@
 		}	
 	}
 
-    
+
+    // Show data tabel Start
     
     function showdataUser()
     {
@@ -55,17 +56,50 @@
 
     function showdataPeminjaman()
     {
-    global $connect;    
-    $hasil=mysqli_query($connect,"SELECT * FROM peminjaman");
-    $rows=[];
-    while($row = mysqli_fetch_assoc($hasil))
-    {
-        $rows[] = $row;
-    }
-    return $rows;
+        global $connect;    
+        $hasil=mysqli_query($connect,"SELECT * FROM peminjaman");
+        $rows=[];
+        while($row = mysqli_fetch_assoc($hasil))
+        {
+            $rows[] = $row;
+        }
+        return $rows;
     }
     
+    // Show data tabel End
     
+    
+    // Tambah data Start
+
+    if(isset($_POST['tambahuser'])) {
+
+        mysqli_query($connect, "insert into user set
+        no_identitas = '$_POST[no_identitas]',
+        nama = '$_POST[nama]',
+        status = '$_POST[status]',
+        username = '$_POST[username]',
+        password = '$_POST[password]',
+        role = '$_POST[role]'
+        ");
+        header("location:user.php");
+    }
+
+    if(isset($_POST['tambahbarang'])) {
+
+        mysqli_query($connect, "insert into barang set
+        kode_barang = '$_POST[kode_barang]',
+        nama_barang = '$_POST[nama_barang]',
+        kategori = '$_POST[kategori]',
+        merek = '$_POST[merek]',
+        jumlah = '$_POST[jumlah]'
+        ");
+        header("location:barang.php");
+    }
+
+    //Tambah data End
+
+
+    //Edit data Start
 
     function editData($tablename, $id)
     {
@@ -73,6 +107,33 @@
         $hasil=mysqli_query($connect,"select * from $tablename where id='$id'");
         return $hasil;
     }
+
+    if(isset($_POST['edituser'])) {
+        mysqli_query($connect, "update user set
+        no_identitas = '$_POST[no_identitas]',
+        nama = '$_POST[nama]',
+        status = '$_POST[status]',
+        username = '$_POST[username]',
+        password = '$_POST[password]',
+        role = '$_POST[role]'
+        where id = '$_GET[id]'");
+
+        header("location:user.php");
+    }
+
+    if(isset($_POST['editbarang'])) {
+        mysqli_query($connect, "update barang set
+        kode_barang = '$_POST[kode_barang]',
+        nama_barang = '$_POST[nama_barang]',
+        kategori = '$_POST[kategori]',
+        merek = '$_POST[merek]',
+        jumlah = '$_POST[jumlah]'
+        where id = '$_GET[id]'");
+
+        header("location:barang.php");
+    }
+
+    //Edit data End
 
     function delete($tablename,$id)
     {

@@ -1,17 +1,5 @@
 <?php
     include "database.php";
-
-    if(isset($_POST['tambah'])) {
-
-        mysqli_query($connect, "insert into barang set
-        kode_barang = '$_POST[kode_barang]',
-        nama_barang = '$_POST[nama_barang]',
-        kategori = '$_POST[kategori]',
-        merek = '$_POST[merek]',
-        jumlah = '$_POST[jumlah]'
-        ");
-        header("location:barang.php");
-    }
 ?>
 
 <!DOCTYPE html>
@@ -79,7 +67,7 @@
                 <div class="form-group pb-1">
                     <input type="text" class="form-control form-control-user" placeholder="Jumlah" name="jumlah">
                 </div>
-                <input type="submit" name="tambah" class="btn btn-info btn-user btn-block">
+                <input type="submit" name="tambahbarang" class="btn btn-info btn-user btn-block">
             </form>
         </div>
 

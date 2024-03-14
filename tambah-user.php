@@ -1,18 +1,5 @@
 <?php
     include "database.php";
-
-    if(isset($_POST['tambah'])) {
-
-        mysqli_query($connect, "insert into user set
-        no_identitas = '$_POST[no_identitas]',
-        nama = '$_POST[nama]',
-        status = '$_POST[status]',
-        username = '$_POST[username]',
-        password = '$_POST[password]',
-        role = '$_POST[role]'
-        ");
-        header("location:user.php");
-    }
 ?>
 
 <!DOCTYPE html>
@@ -83,7 +70,7 @@
                 <div class="form-group pb-1">
                     <input type="text" class="form-control form-control-user" placeholder="Role" name="role">
                 </div>
-                <input type="submit" name="tambah" class="btn btn-info btn-user btn-block">
+                <input type="submit" name="tambahuser" class="btn btn-info btn-user btn-block">
             </form>
         </div>
 

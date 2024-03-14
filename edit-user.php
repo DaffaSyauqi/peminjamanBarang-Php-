@@ -1,19 +1,6 @@
 <?php
     include "database.php";
     $data=editData("user",$_GET['id']);
-
-    if(isset($_POST['edit'])) {
-        mysqli_query($connect, "update user set
-        no_identitas = '$_POST[no_identitas]',
-        nama = '$_POST[nama]',
-        status = '$_POST[status]',
-        username = '$_POST[username]',
-        password = '$_POST[password]',
-        role = '$_POST[role]'
-        where id = '$_GET[id]'");
-
-        header("location:user.php");
-    }
 ?>
 
 <!DOCTYPE html>
@@ -86,7 +73,7 @@
                 <div class="form-group pb-1">
                     <input type="text" class="form-control form-control-user" placeholder="Role" name="role" value="<?php echo $user['role']; ?>">
                 </div>
-                <input type="submit" name="edit" class="btn btn-info btn-user btn-block">
+                <input type="submit" name="edituser" class="btn btn-info btn-user btn-block">
             </form>
             <?php endwhile; ?>
         </div>

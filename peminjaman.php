@@ -7,11 +7,9 @@ if(isset($_POST['pinjam'])) {
     // Mendapatkan tanggal dan waktu saat ini
     $tgl_pinjam = date('Y-m-d H:i:s'); // Format MySQL datetime untuk tanggal hari ini
 
-    // Mendapatkan no_identitas dari sesi yang sedang berjalan
+    // Mendapatkan no_identitas dan id_loign dari sesi yang sedang berjalan
     $no_identitas = $_SESSION['no_identitas'];
-
-    // Mendapatkan id_login dari sesi yang sedang berjalan
-    $id_login = $_SESSION['id']; // Anda mungkin perlu menyesuaikan ini dengan kolom yang sesuai dari tabel pengguna
+    $id_login = $_SESSION['id'];
 
     // Menyimpan data peminjaman ke database
     $kode_barang = mysqli_real_escape_string($connect, $_POST['kode_barang']);

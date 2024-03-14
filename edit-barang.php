@@ -1,18 +1,6 @@
 <?php
     include "database.php";
     $data=editData("barang", $_GET['id']);
-
-    if(isset($_POST['edit'])) {
-        mysqli_query($connect, "update barang set
-        kode_barang = '$_POST[kode_barang]',
-        nama_barang = '$_POST[nama_barang]',
-        kategori = '$_POST[kategori]',
-        merek = '$_POST[merek]',
-        jumlah = '$_POST[jumlah]'
-        where id = '$_GET[id]'");
-
-        header("location:barang.php");
-    }
 ?>
 
 <!DOCTYPE html>
@@ -82,7 +70,7 @@
                 <div class="form-group pb-1">
                     <input type="number" class="form-control form-control-user" placeholder="Jumlah" name="jumlah" value="<?php echo $barang['jumlah']; ?>">
                 </div>
-                <input type="submit" name="edit" class="btn btn-info btn-user btn-block">
+                <input type="submit" name="editbarang" class="btn btn-info btn-user btn-block">
             </form>
             <?php endwhile; ?>
         </div>
